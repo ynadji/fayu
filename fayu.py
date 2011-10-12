@@ -16,6 +16,14 @@ from optparse import OptionParser
 from cjklib.cjknife import CharacterInfo
 from cjklib.characterlookup import CharacterLookup
 
+# Project lib imports
+def projectpath(libdir, filedir=__file__):
+    """Path's relative to location of the file. Makes it so your scripts don't
+    break when run from directories other than the root."""
+    import os.path as p
+    return p.normpath(p.join(p.dirname(p.realpath(filedir)), libdir))
+
+sys.path.append(projectpath('wulib'))
 from wulib import flatten, unique
 
 ci = CharacterInfo()
