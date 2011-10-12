@@ -1,0 +1,12 @@
+== fayu - 发育 ==
+fayu is a library that helps you learn Chinese. Given a character, or set of
+characters, fayu will suggest new characters that will be easy to learn and
+new words formed from characters you already know. For example, if you know the
+character 明 (bright) and the word 星期 (week), fayu would suggest the new words
+明星 (celebrity) and 星星 (star). fayu also works as the component level.
+Searching for 饣 (food) would return an assortment of words containing the
+radical like 饥 (starving, famine), 饭 (cooked rice, meal), and 饿 (hungry).
+
+fayu makes heavy use of the excellent cjklib (http://code.google.com/p/cjklib/).
+Eventually, fayu will be an Anki plugin so new cards can automatically be
+generated based on what is currently in a user's deck.
