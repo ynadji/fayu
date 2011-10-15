@@ -11,6 +11,7 @@
 #
 
 import sys
+import os
 from optparse import OptionParser
 
 from cjklib.cjknife import CharacterInfo
@@ -84,9 +85,15 @@ def main():
 
     # do stuff
     if options.compounds:
-        s = set(args[0].decode('utf8'))
+        if os.path.isfile(args[0]):
+            with open(args[0]) as f:
+                s = set([x.strip().decode('utf8') for x in f.readlines()])
+        else:
+            s = set(args[0].decode('utf8'))
+
         for res in compounds(s):
-            print('%s\t%s\t%s' % (res.HeadwordSimplified, res.Reading, res.Translation))
+            ustr = '%s\t%s\t%s' % (res.HeadwordSimplified, res.Reading, res.Translation)
+            print(ustr.encode('utf8'))
     else:
         for c in args[0].decode('utf8'):
             if options.by_components:
