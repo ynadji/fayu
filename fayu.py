@@ -52,10 +52,13 @@ def compounds(s):
     and 星星 would be returned."""
     newwords = set([])
     for word in s: # word could be multiple 汉字
-        for res in ci.searchDictionary('%%%s%%' % word, 'GR'):
-            headword = res.HeadwordSimplified
-            if _all_hanzi_known(headword, s) and headword not in s:
-                newwords.add(res)
+        try:
+            for res in ci.searchDictionary('%%%s%%' % word, 'GR'):
+                headword = res.HeadwordSimplified
+                if _all_hanzi_known(headword, s) and headword not in s:
+                    newwords.add(res)
+        except AttributeError as e:
+            sys.stderr.write('%s: %s\n' % (str(e), word))
 
     return newwords
 
