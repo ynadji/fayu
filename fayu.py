@@ -62,6 +62,11 @@ def compounds(s):
 
     return newwords
 
+def printdictlookup(char):
+    for res in ci.searchDictionary(char, 'GR'):
+        ustr = '%s\t%s\t%s' % (res.HeadwordSimplified, res.Reading, res.Translation)
+        print(ustr.encode('utf8'))
+
 def main():
     """main function for standalone usage"""
     usage = "usage: %prog [options] hanzis"
@@ -85,9 +90,11 @@ def main():
     else:
         for c in args[0].decode('utf8'):
             if options.by_components:
-                print(', '.join(bycomponents(c)))
+                for char in bycomponents(c):
+                    printdictlookup(char)
             else:
-                print(', '.join(components(c)))
+                for char in components(c):
+                    printdictlookup(char)
 
 if __name__ == '__main__':
     sys.exit(main())
